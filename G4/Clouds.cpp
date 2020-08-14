@@ -10,6 +10,11 @@ Cloud::Cloud()
 	cloudSprite->SetHotSpot(301 / 2.0, 131 / 2.0);
 }
 
+Cloud::~Cloud()
+{
+	delete cloudSprite;
+}
+
 void Cloud::init(int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
 {
 	position = Vector2((rand() % (LevelSizeXPositive * 2)) - LevelSizeXPositive, (rand() % (LevelSizeYPositive * 2)) - LevelSizeYPositive);

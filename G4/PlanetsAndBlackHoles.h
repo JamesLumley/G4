@@ -11,6 +11,7 @@ class Planet
 {
 public:
 	Planet();
+	~Planet();
 	Planet(Vector2 newCenter, double newWeight, double newRange, double newRadius, bool newRepel, bool newBlackHole);
 	void calculateDistance(Vector2 objectPosition, double* distanceFromPlanetPow2, Vector2 objectDimension);
 	void calculateAngle(Vector2 objectPosition, double* angleWithPlanet);
@@ -40,6 +41,5 @@ private:
 	bool repel;
 	int spriteNumber;
 	bool blackHole;
-	hgeSprite* blackHoleSprite;
 	hgeSprite* planetSprite;
 };

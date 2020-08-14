@@ -1,6 +1,11 @@
 #include "Trees.h"
 #include <string>
 
+Tree::~Tree()
+{
+	delete treeSprite;
+}
+
 void Tree::init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
 {	
 	dimension = Vector2(24, 47);

@@ -2,6 +2,12 @@
 #include "AudioManager.h"
 #include "GameStates.h"
 
+Levels::~Levels()
+{
+	delete controller;
+	delete platform;
+}
+
 void Levels::init()
 {
 	SpeedUp = false;
@@ -349,16 +355,6 @@ void Levels::render()
 		PlatformsPoints[3] = Vector2(platforms[i].centre.x + (platforms[i].dimension.x / 2), platforms[i].centre.y - (platforms[i].dimension.y / 2));
 
 		platform->Render4V(PlatformsPoints[3].x, PlatformsPoints[3].y, PlatformsPoints[0].x, PlatformsPoints[0].y, PlatformsPoints[1].x, PlatformsPoints[1].y, PlatformsPoints[2].x, PlatformsPoints[2].y);
-
-		//GameShell::Vertex v3[8];
-		//unsigned int index3[] = { 0, 1, 1, 2, 2, 3, 3, 0 };
-		//for (unsigned int iIndex = 0; iIndex < ARRAY_LENGTH(index3); iIndex++)
-		//{
-		//	v3[iIndex].Position.x = PlatformsPoints[index3[iIndex]].x;
-		//	v3[iIndex].Position.y = PlatformsPoints[index3[iIndex]].y;
-		//	v3[iIndex].col = GameShell::RGBTOCOLOR(255, 255, 255);
-		//}
-		//GameShell::RenderLines(v3, ARRAY_LENGTH(v3) / 2);
 	}
 	//Draw Chests
 	for (int i = 0; i < currentStarsChestsNumber; i++)
@@ -402,5 +398,12 @@ void Levels::render()
 
 void Levels::exit()
 {
-
+	//Clear all the vectors
+	std::vector<Planet>().swap(planets);
+	std::vector<Platform>().swap(platforms);
+	std::vector<Cloud>().swap(clouds);
+	std::vector<Enemy>().swap(enemies);
+	std::vector<Player>().swap(players);
+	std::vector<Tree>().swap(trees);
+	std::vector<StarChest>().swap(starChests);
 }

@@ -1,5 +1,12 @@
 #include "StarsChests.h"
 
+StarChest::~StarChest()
+{
+	delete chestClosed;
+	delete chestOpened;
+	delete star;
+}
+
 void StarChest::init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
 {
 	position = Vector2((rand() % (LevelSizeXPositive - LevelSizeXNegative) - ((LevelSizeXPositive - LevelSizeXNegative) / 2)), (rand() % (LevelSizeYPositive - LevelSizeYNegative) - ((LevelSizeYPositive - LevelSizeYNegative) / 2)));

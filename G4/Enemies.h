@@ -14,6 +14,7 @@ class Enemy
 {
 public:
 	Enemy();
+	~Enemy();
 	void init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive);
 	void update(int currentPlanetsNumber, int currentPlatformsNumber, vector<Planet>* planets, vector<Platform>* platforms, double gravityAcceleration, double LevelSizeXNegative, double LevelSizeXPositive, double LevelSizeYNegative, double LevelSizeYPositive);
 	void render();
@@ -57,16 +58,7 @@ private:
 	double jumpPowerBK;
 
 	//Enemy Variables
-	hgeAnimation* sprite1;
-	hgeAnimation* sprite2;
-	hgeAnimation* sprite3;
-	hgeAnimation* sprite4;
-	hgeAnimation* sprite5;
-	hgeAnimation* sprite6;
-	hgeAnimation* sprite7;
-	hgeAnimation* sprite8;
-	hgeAnimation* sprite9;
-	hgeAnimation* sprite10;
+	hgeAnimation* enemySprite;
 
 	//Collision
 	float headRadius;

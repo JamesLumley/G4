@@ -9,6 +9,7 @@ class Cloud
 {
 public:
 	Cloud();
+	~Cloud();
 	void init(int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive);
 	void update(int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive);
 	void render();

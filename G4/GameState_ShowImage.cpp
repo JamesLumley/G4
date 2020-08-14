@@ -35,5 +35,7 @@ void GameState_ShowImage::render()
 
 void GameState_ShowImage::exit()
 {
-
+	delete controller;
+	delete Controls;
+	delete Credits;
 }

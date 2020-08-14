@@ -1,6 +1,15 @@
 #include "Players.h"
 #include "GameState_Menu.h"
 
+Player::~Player()
+{
+	delete controller;
+	delete playerRun;
+	delete playerJump;
+	delete playerLand;
+	delete playerRoll;
+}
+
 void Player::init(int currentPlanetsNumber, int currentPlatformsNumber, float positionX, float positionY, int newPlayersNumber, int newPlayerNumber, int newlives)
 {
 	dimension = Vector2(18, 21);
@@ -161,11 +170,6 @@ void Player::update(int currentPlanetsNumber, int currentPlatformsNumber, vector
 			(*planets)[i].calculateDistance(position, &distanceFromPlanetPow2[i], dimension);
 			(*planets)[i].calculateAngle(position, &angleWithPlanet[i]);
 			currentGravity += (*planets)[i].calculateGravity(position, weight, &distanceFromPlanetPow2[i], gravityAcceleration);
-		}
-		for (int i = 0; i < currentPlatformsNumber; i++)
-		{
-			//(*platforms)[i].calculateAngle(position, &angleWithPlatform[i]);
-			//currentGravity += (*platforms)[i].calculateGravity(position, weight);
 		}
 
 		currentGravityAngle = atan2((-currentGravity.x), (-currentGravity.y));
@@ -338,27 +342,7 @@ void Player::update(int currentPlanetsNumber, int currentPlatformsNumber, vector
 				instantVelocity += jump;
 				jumpPower -= 1.3;
 			}
-			//else if (!isCollidingWithLimits && !isCaughtByPlanet && !IsCollidingWithPlatform && sqrt(DistanceFromPlanetPow2[isGoingToIndex]) > (*vsCircularGravityField)[isGoingToIndex].Radius + 115)
-			//{
-			//	Jump = Vector2(0, JumpPower / 3);
-			//	InstantVelocity.y -= Jump.y;
-			//	CurrentAngle = M_PI;
-			//	bIsJetPackActive = true;
-			//	Weight = 200;
-			//}
 		}
-		//if (bIsJetPackActive)
-		//{
-		//	if (rightPressed) //If you press right you move anticlockwise
-		//	{
-		//		instantVelocity.x += currentMovingVelocity.x;
-		//	}
-		//	else if (leftPressed) //If you press left you move anticlockwise
-		//	{
-		//		instantVelocity.x -= currentMovingVelocity.x;
-		//	}
-		//}
-		//else
 		if (isCaughtByPlanet || (isJumping && !inertia))
 		{
 			if ((isCaughtByPlanet || isJumping) && !inertia)
@@ -731,7 +715,7 @@ int Player::getCollidingPlanetIndex()
 	return nearestPlanetIndex;
 }
 
-bool Player::checkDeathByEnemy(Enemy enemy)
+bool Player::checkDeathByEnemy(Enemy &enemy)
 {
 	Vector2 enemyHead = enemy.getCenterHead();
 	float enemyHeadRadius = enemy.getHeadRadius();
@@ -740,7 +724,7 @@ bool Player::checkDeathByEnemy(Enemy enemy)
 	return false;
 }
 
-bool Player::checkEnemyKilled(Enemy enemy)
+bool Player::checkEnemyKilled(Enemy &enemy)
 {
 	Vector2 enemyHead = enemy.getCenterHead();
 	float enemyHeadRadius = enemy.getHeadRadius();

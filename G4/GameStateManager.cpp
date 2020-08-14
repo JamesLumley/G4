@@ -153,6 +153,7 @@ void GameStateManager::restartGameFromPauseMode(GameStateManager::State* restart
 
 	if(prePauseState != NULL)
 	{
+		prePauseState->exit();
 		delete prePauseState;
 		prePauseState = NULL;
 	}

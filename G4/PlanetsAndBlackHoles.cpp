@@ -20,6 +20,11 @@ Planet::Planet()
 	rotation = ((rand() % 200) / 200.0) * M_PI;
 }
 
+Planet::~Planet()
+{
+	delete planetSprite;
+}
+
 Planet::Planet(Vector2 newCenter, double newWeight, double newRange, double newRadius, bool newRepel, bool newBlackHole)
 {
 	centre = newCenter;
@@ -103,12 +108,24 @@ void Planet::setRepel(bool newRepel)
 	repel = newRepel;
 	while (spriteNumber == 0)
 		spriteNumber = (rand() % 15) + 1;
+
+	if (repel)
+	{
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetRepel.png"), 0, 0, 385, 385);
+		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
+	}
 }
 void Planet::setBlackHole(bool newBlackHole)
 {
 	blackHole = newBlackHole;
 	if (newBlackHole)
 		repel = false;
+
+	if (blackHole)
+	{
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/BlackHole.png"), 0, 0, 385, 385);
+		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
+	}
 }
 
 Vector2 Planet::getCentre()
@@ -141,17 +158,7 @@ bool Planet::isRepellable()
 
 void Planet::loadSprites()
 {
-	if (blackHole)
-	{
-		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/BlackHole.png"), 0, 0, 385, 385);
-		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
-	}
-	else if (repel)
-	{
-		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetRepel.png"), 0, 0, 385, 385);
-		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
-	}
-	else if (spriteNumber == 9)
+	if (spriteNumber == 9)
 	{
 		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetStable.png"), 0, 0, 425, 425);
 		planetSprite->SetHotSpot(425 / 2.0, 425 / 2.0);
@@ -160,7 +167,7 @@ void Planet::loadSprites()
 	{
 		char spriteNumberBuffer[32];
 		sprintf(spriteNumberBuffer, "Contents/Planet%d.png", spriteNumber);
-		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet1.png"), 0, 0, 385, 385);
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load(spriteNumberBuffer), 0, 0, 385, 385);
 		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
 	}
 }

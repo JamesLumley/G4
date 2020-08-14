@@ -1,6 +1,11 @@
 #include"GameStates.h"
 #include "AudioManager.h"
 
+GameState_Pause::~GameState_Pause()
+{
+	delete controller;
+}
+
 void GameState_Pause::init()
 {
 	AudioManager::StopBackgroundSound();

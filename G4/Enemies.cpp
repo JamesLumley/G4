@@ -31,35 +31,59 @@ Enemy::Enemy()
 	isCollidingWithPlatform = false;
 
 	spriteNumber = (rand() % 10) + 1;
-	if (hasToLoadFiles)
-	{
-		HTEXTURE t;
-		t = GameShell::hge->Texture_Load("Contents/Original.png");
-		sprite1 = new hgeAnimation(t, 5, 0.72, 0, 0, 32, 32);
-		sprite1->SetFlip(true, false);
-		sprite2 = new hgeAnimation(t, 5, 2, 32 * 5, 0, 32, 32);
-		sprite2->SetFlip(true, false);
-		sprite3 = new hgeAnimation(t, 5, 1.3, 64 * 5, 0, 32, 32);
-		sprite3->SetFlip(true, false);
-		sprite4 = new hgeAnimation(t, 5, 1, 0, 32, 32, 32);
-		sprite4->SetFlip(true, false);
-		sprite5 = new hgeAnimation(t, 5, 0.8, 32 * 5, 32, 32, 32);
-		sprite5->SetFlip(true, false);
-		sprite6 = new hgeAnimation(t, 5, 1.3, 64 * 5, 32, 32, 32);
-		sprite6->SetFlip(true, false);
-		sprite7 = new hgeAnimation(t, 5, 2, 0, 64, 32, 32);
-		sprite7->SetFlip(true, false);
-		sprite8 = new hgeAnimation(t, 5, 1, 0, 96, 32, 32);
-		sprite8->SetFlip(true, false);
-		sprite9 = new hgeAnimation(t, 5, 2, 0, 128, 32, 32);
-		sprite9->SetFlip(true, false);
-		sprite10 = new hgeAnimation(t, 5, 2, 0, 160, 32, 32);
-		sprite10->SetFlip(true, false);
-	
-		deathSound = GameShell::hge->Effect_Load("Contents/EnemyDeath.mp3");
 
-		hasToLoadFiles = false;
+	HTEXTURE t = GameShell::hge->Texture_Load("Contents/Original.png");
+	if (spriteNumber == 1)
+	{
+		enemySprite = new hgeAnimation(t, 5, 0.72, 0, 0, 32, 32);
+		enemySprite->SetFlip(true, false);
 	}
+	else if (spriteNumber == 2)
+	{
+		enemySprite = new hgeAnimation(t, 5, 2, 32 * 5, 0, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 3)
+	{
+		enemySprite = new hgeAnimation(t, 5, 1.3, 64 * 5, 0, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 4)
+	{
+		enemySprite = new hgeAnimation(t, 5, 1, 0, 32, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 5)
+	{
+		enemySprite = new hgeAnimation(t, 5, 0.8, 32 * 5, 32, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 6)
+	{
+		enemySprite = new hgeAnimation(t, 5, 1.3, 64 * 5, 32, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 7)
+	{
+		enemySprite = new hgeAnimation(t, 5, 2, 0, 64, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 8)
+	{
+		enemySprite = new hgeAnimation(t, 5, 1, 0, 96, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else if (spriteNumber == 9)
+	{
+		enemySprite = new hgeAnimation(t, 5, 2, 0, 128, 32, 32);
+		enemySprite->SetFlip(true, false);
+	}
+	else
+	{
+		enemySprite = new hgeAnimation(t, 5, 2, 0, 160, 32, 32);
+	}
+	deathSound = GameShell::hge->Effect_Load("Contents/EnemyDeath.mp3");
+
 	double randomV = ((rand() % 100) - 50) / 100.0;
 	movingVelocity.x = movingVelocity.x + movingVelocity.x*randomV;
 	movingVelocity.y = movingVelocity.y + movingVelocity.y*randomV;
@@ -88,6 +112,11 @@ Enemy::Enemy()
 	else if (spriteNumber == 10)
 		headRadius = 9;
 	centerHead = Vector2(position.x + 0.7 * dimension.y * sin(currentAngle), position.y + 0.7 * dimension.y * cos(currentAngle));
+}
+
+Enemy::~Enemy()
+{
+	delete enemySprite;
 }
 
 void Enemy::init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
@@ -222,86 +251,11 @@ void Enemy::render()
 			points[i] = Vector2::Transform(points[i], transform);
 		}
 
-		if (spriteNumber == 1)
-		{
-			sprite1->SetFlip(flipX, false);
-			sprite1->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite1->IsPlaying())
-				sprite1->Play();
-			sprite1->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 2)
-		{
-			sprite2->SetFlip(flipX, false);
-			sprite2->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite2->IsPlaying())
-				sprite2->Play();
-			sprite2->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 3)
-		{
-			sprite3->SetFlip(flipX, false);
-			sprite3->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite3->IsPlaying())
-				sprite3->Play();
-			sprite3->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 4)
-		{
-			sprite4->SetFlip(flipX, false);
-			sprite4->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite4->IsPlaying())
-				sprite4->Play();
-			sprite4->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 5)
-		{
-			sprite5->SetFlip(flipX, false);
-			sprite5->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite5->IsPlaying())
-				sprite5->Play();
-			sprite5->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 6)
-		{
-			sprite6->SetFlip(flipX, false);
-			sprite6->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite6->IsPlaying())
-				sprite6->Play();
-			sprite6->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 7)
-		{
-			sprite7->SetFlip(flipX, false);
-			sprite7->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite7->IsPlaying())
-				sprite7->Play();
-			sprite7->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 8)
-		{
-			sprite8->SetFlip(flipX, false);
-			sprite8->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite8->IsPlaying())
-				sprite8->Play();
-			sprite8->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else if (spriteNumber == 9)
-		{
-			sprite9->SetFlip(flipX, false);
-			sprite9->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite9->IsPlaying())
-				sprite9->Play();
-			sprite9->Update(GameShell::hge->Timer_GetDelta());
-		}
-		else //if (spriteNumber == 10)
-		{
-			sprite10->SetFlip(flipX, false);
-			sprite10->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-			if (!sprite10->IsPlaying())
-				sprite10->Play();
-			sprite10->Update(GameShell::hge->Timer_GetDelta());
-		}
+		enemySprite->SetFlip(flipX, false);
+		enemySprite->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
+		if (!enemySprite->IsPlaying())
+			enemySprite->Play();
+		enemySprite->Update(GameShell::hge->Timer_GetDelta());
 	}
 }
 

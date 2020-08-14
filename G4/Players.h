@@ -14,11 +14,12 @@ using namespace std;
 class Player
 {
 public:
+	~Player();
 	void init(int currentPlanetsNumber, int currentPlatformsNumber, float positionX, float positionY, int newPlayersNumber, int newPlayerNumber, int newlives);
 	void update(int currentPlanetsNumber, int currentPlatformsNumber, vector<Planet>* planets, vector<Platform>* platforms, double gravityAcceleration, int currentEnemiesNumber, vector<Enemy>* enemies, int currentStarsChestsNumber, vector<StarChest>* (maxStarsChestsNumber), double* LevelSizeXNegative, double* LevelSizeXPositive, double* LevelSizeYNegative, double* LevelSizeYPositive);
 	void render();
-	bool checkDeathByEnemy(Enemy enemy);
-	bool checkEnemyKilled(Enemy enemy);
+	bool checkDeathByEnemy(Enemy &enemy);
+	bool checkEnemyKilled(Enemy &enemy);
 	Vector2 getPosition();
 	bool getColliding();
 	int getCollidingPlanetIndex();

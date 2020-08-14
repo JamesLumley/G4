@@ -31,6 +31,7 @@ public:
 		trees = vector<Tree>(maxPlanetsNumber * 2);
 		starChests = vector<StarChest>(maxStarsChestsNumber);
 	}
+	~Levels();
 	virtual void init();
 	bool update();
 	void render();

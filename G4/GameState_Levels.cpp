@@ -60,8 +60,10 @@ bool GameState_LevelTutorial::update()
 		GameState_NextLevelAndGameOver::nextState = 2;
 		GameShell::setState(new GameState_NextLevelAndGameOver);
 	}
-
-	Levels::update();
+	else
+	{
+		Levels::update();
+	}
 	return true;
 }
 
@@ -110,8 +112,10 @@ bool GameState_Level2::update()
 		GameState_NextLevelAndGameOver::nextState = 3;
 		GameShell::setState(new GameState_NextLevelAndGameOver);
 	}
-
-	Levels::update();
+	else
+	{
+		Levels::update();
+	}
 	return true;
 }
 
@@ -152,16 +156,20 @@ bool GameState_Level3::update()
 {
 	if (players[0].getLives() == 0)
 	{
+		exit();
 		GameState_NextLevelAndGameOver::nextState = 0;
 		GameShell::setState(new GameState_NextLevelAndGameOver);
 	}
 	else if (players[0].getCollectedStars() == 12)
 	{
+		exit();
 		GameState_NextLevelAndGameOver::nextState = 4;
 		GameShell::setState(new GameState_NextLevelAndGameOver);
 	}
-
-	Levels::update();
+	else
+	{
+		Levels::update();
+	}
 	return true;
 }
 
@@ -205,7 +213,10 @@ bool GameState_LevelMultiplayer::update()
 		GameState_NextLevelAndGameOver::nextState = 0;
 		GameShell::setState(new GameState_NextLevelAndGameOver);
 	}
-	Levels::update();
+	else
+	{
+		Levels::update();
+	}
 	return true;
 }
 
