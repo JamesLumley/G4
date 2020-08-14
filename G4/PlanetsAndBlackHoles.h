@@ -39,17 +39,7 @@ private:
 	double rotation;
 	bool repel;
 	int spriteNumber;
-	bool hasToLoadSprites;
 	bool blackHole;
 	hgeSprite* blackHoleSprite;
-	hgeSprite* planetSprite1;
-	hgeSprite* planetSprite2;
-	hgeSprite* planetSprite3;
-	hgeSprite* planetSprite4;
-	hgeSprite* planetSprite5;
-	hgeSprite* planetSprite6;
-	hgeSprite* planetSprite7;
-	hgeSprite* planetSprite8;
-	hgeSprite* planetSprite9;
-	hgeSprite* planetSpriteRepel;
+	hgeSprite* planetSprite;
 };

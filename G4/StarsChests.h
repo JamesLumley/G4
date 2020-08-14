@@ -42,7 +42,6 @@ private:
 	bool isCollidingWithPlatform;
 	bool opened;
 	bool starTaken;
-	bool hasToLoadSprites;
 	hgeSprite* chestClosed;
 	hgeSprite* chestOpened;
 	hgeSprite* star;

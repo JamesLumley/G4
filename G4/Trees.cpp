@@ -1,4 +1,5 @@
 #include "Trees.h"
+#include <string>
 
 void Tree::init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
 {	
@@ -13,23 +14,13 @@ void Tree::init(int currentPlanetsNumber, int currentPlatformsNumber, int LevelS
 	angleWithPlanet = vector<double>(currentPlanetsNumber);
 	distanceFromPlatformPow2 = vector<double>(currentPlatformsNumber);
 	angleWithPlatform = vector<double>(currentPlatformsNumber);
-	spriteNumber = (rand() % 7) + 1;
-	if (hasToLoadSprites)
-	{
-		Sprite1 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree1.png"), 0, 0, 206, 442);
-		Sprite1->SetHotSpot(206 / 2.0, 442 / 2.0);
-		Sprite2 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree2.png"), 0, 0, 206, 442);
-		Sprite2->SetHotSpot(206 / 2.0, 442 / 2.0);
-		Sprite3 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree3.png"), 0, 0, 206, 442);
-		Sprite3->SetHotSpot(206 / 2.0, 442 / 2.0);
-		Sprite4 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree4.png"), 0, 0, 206, 442);
-		Sprite4->SetHotSpot(206 / 2.0, 442 / 2.0);
-		Sprite5 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree5.png"), 0, 0, 206, 442);
-		Sprite5->SetHotSpot(206 / 2.0, 442 / 2.0);
-		Sprite6 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Tree6.png"), 0, 0, 206, 442);
-		Sprite6->SetHotSpot(206 / 2.0, 442 / 2.0);
-		hasToLoadSprites = false;
-	}
+	spriteNumber = (rand() % 6) + 1;
+
+
+	char spriteNumberBuffer[32];
+	sprintf(spriteNumberBuffer, "Contents/Tree%d.png", spriteNumber);
+	treeSprite = new hgeSprite(GameShell::hge->Texture_Load(spriteNumberBuffer), 0, 0, 206, 442);
+	treeSprite->SetHotSpot(206 / 2.0, 442 / 2.0);
 }
 
 void Tree::update(vector<Tree>* Trees, int currentPlanetsNumber, int currentPlatformsNumber, vector<Planet>* planets, vector<Platform>* platforms, double gravityAcceleration, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)
@@ -106,19 +97,8 @@ void Tree::render()
 		{
 			points[i] = Vector2::Transform(points[i], transform);
 		}
-		
-		if (spriteNumber == 1)
-			Sprite1->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		else if (spriteNumber == 2)
-			Sprite2->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		else if (spriteNumber == 3)
-			Sprite3->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		else if (spriteNumber == 4)
-			Sprite4->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		else if (spriteNumber == 5)
-			Sprite5->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		else //if (spriteNumber == 6 || spriteNumber == 7)
-			Sprite6->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
+
+		treeSprite->Render4V(points[3].x, points[3].y, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
 	}
 	else
 	{

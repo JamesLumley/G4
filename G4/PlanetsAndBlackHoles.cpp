@@ -1,4 +1,5 @@
 #include "PlanetsAndBlackHoles.h"
+#include <string>
 
 Planet::Planet()
 {
@@ -12,12 +13,10 @@ Planet::Planet()
 	if ((rand() % 11) == 0)
 		spriteNumber = 9;
 	else
-		spriteNumber = (rand() % 9) + 1;
-	if (hasToLoadSprites)
-	{
-		loadSprites();
-		hasToLoadSprites = false;
-	}
+		spriteNumber = (rand() % 8) + 1;
+
+	loadSprites();
+	
 	rotation = ((rand() % 200) / 200.0) * M_PI;
 }
 
@@ -80,31 +79,7 @@ bool Planet::calculateInRange(double distanceFromPlanetPow2)
 
 void Planet::render()
 {
-	if (blackHole)
-		blackHoleSprite->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-	else if (repel)
-		planetSpriteRepel->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-	else
-	{
-		if (spriteNumber == 1)
-			planetSprite1->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 2)
-			planetSprite2->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 3)
-			planetSprite3->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 4)
-			planetSprite4->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 5)
-			planetSprite5->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 6)
-			planetSprite6->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 7)
-			planetSprite7->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else if (spriteNumber == 8)
-			planetSprite8->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-		else //if (spriteNumber == 9)
-			planetSprite9->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
-	}
+	planetSprite->RenderEx(centre.x, centre.y, rotation, radius / 188, radius / 188);
 }
 
 void Planet::setCentre(Vector2 newCentre)
@@ -166,26 +141,26 @@ bool Planet::isRepellable()
 
 void Planet::loadSprites()
 {
-	blackHoleSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/BlackHole.png"), 0, 0, 385, 385);
-	planetSprite1 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet1.png"), 0, 0, 385, 385);
-	planetSprite2 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet2.png"), 0, 0, 385, 385);
-	planetSprite3 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet3.png"), 0, 0, 385, 385);
-	planetSprite4 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet4.png"), 0, 0, 385, 385);
-	planetSprite5 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet5.png"), 0, 0, 385, 385);
-	planetSprite6 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet6.png"), 0, 0, 385, 385);
-	planetSprite7 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet7.png"), 0, 0, 385, 385);
-	planetSprite8 = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet8.png"), 0, 0, 385, 385);
-	planetSprite9 = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetStable.png"), 0, 0, 425, 425);
-	planetSpriteRepel = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetRepel.png"), 0, 0, 385, 385);
-	blackHoleSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite1->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite2->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite3->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite4->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite5->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite6->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite7->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite8->SetHotSpot(385 / 2.0, 385 / 2.0);
-	planetSprite9->SetHotSpot(425 / 2.0, 425 / 2.0);
-	planetSpriteRepel->SetHotSpot(385 / 2.0, 385 / 2.0);
+	if (blackHole)
+	{
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/BlackHole.png"), 0, 0, 385, 385);
+		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
+	}
+	else if (repel)
+	{
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetRepel.png"), 0, 0, 385, 385);
+		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
+	}
+	else if (spriteNumber == 9)
+	{
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/PlanetStable.png"), 0, 0, 425, 425);
+		planetSprite->SetHotSpot(425 / 2.0, 425 / 2.0);
+	}
+	else
+	{
+		char spriteNumberBuffer[32];
+		sprintf(spriteNumberBuffer, "Contents/Planet%d.png", spriteNumber);
+		planetSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/Planet1.png"), 0, 0, 385, 385);
+		planetSprite->SetHotSpot(385 / 2.0, 385 / 2.0);
+	}
 }

@@ -16,6 +16,5 @@ private:
 	Vector2 position;
 	Vector2 dimension;
 	Vector2 instantVelocity;
-	bool hasToLoadSprites;
 	hgeSprite *cloudSprite;
 };

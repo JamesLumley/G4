@@ -19,17 +19,12 @@ void StarChest::init(int currentPlanetsNumber, int currentPlatformsNumber, int L
 	angleWithPlanet = vector<double>(currentPlanetsNumber);
 	distanceFromPlatformPow2 = vector<double>(currentPlatformsNumber);
 	angleWithPlatform = vector<double>(currentPlatformsNumber);
-
-	if (hasToLoadSprites)
-	{
-		chestClosed = new hgeSprite(GameShell::hge->Texture_Load("Contents/ChestClosed.png"), 0, 0, 510, 390);
-		chestClosed->SetHotSpot(510 / 2.0, 390 / 2.0);
-		chestOpened = new hgeSprite(GameShell::hge->Texture_Load("Contents/ChestOpened.png"), 0, 0, 510, 390);
-		chestOpened->SetHotSpot(510 / 2.0, 390 / 2.0);
-		star = new hgeSprite(GameShell::hge->Texture_Load("Contents/Star.png"), 0, 0, 414, 390);
-		star->SetHotSpot(414 / 2.0, 390 / 2.0);
-		hasToLoadSprites = false;
-	}
+	chestClosed = new hgeSprite(GameShell::hge->Texture_Load("Contents/ChestClosed.png"), 0, 0, 510, 390);
+	chestClosed->SetHotSpot(510 / 2.0, 390 / 2.0);
+	chestOpened = new hgeSprite(GameShell::hge->Texture_Load("Contents/ChestOpened.png"), 0, 0, 510, 390);
+	chestOpened->SetHotSpot(510 / 2.0, 390 / 2.0);
+	star = new hgeSprite(GameShell::hge->Texture_Load("Contents/Star.png"), 0, 0, 414, 390);
+	star->SetHotSpot(414 / 2.0, 390 / 2.0);
 }
 
 void StarChest::update(int currentPlanetsNumber, int currentPlatformsNumber, vector<Planet>* planets, vector<Platform>* platforms, double gravityAcceleration, int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)

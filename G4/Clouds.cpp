@@ -6,12 +6,8 @@ Cloud::Cloud()
 	dimension = Vector2(RandNum, RandNum);
 	position = Vector2(0, 0);
 	instantVelocity = Vector2(((rand() % 4) + 2) / 2, (rand() % 2 - 0.5) / 4);
-	if (hasToLoadSprites)
-	{
-		cloudSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/Cloud.png"), 0, 0, 301, 132);
-		cloudSprite->SetHotSpot(301 / 2.0, 131 / 2.0);
-		hasToLoadSprites = false;
-	}
+	cloudSprite = new hgeSprite(GameShell::hge->Texture_Load("Contents/Cloud.png"), 0, 0, 301, 132);
+	cloudSprite->SetHotSpot(301 / 2.0, 131 / 2.0);
 }
 
 void Cloud::init(int LevelSizeXNegative, int LevelSizeXPositive, int LevelSizeYNegative, int LevelSizeYPositive)

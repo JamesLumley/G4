@@ -75,9 +75,9 @@ bool Platform::calculateCollision(Vector2 playerPosition, Vector2 playerDimensio
 	//	//Avoid overlapping
 	//	//PlayerPosition.x = -Dimension.x + CurrentDistance.x;
 	//	CollidingWithTop = true;
-	//	return true;
+	//	return true
 	//}
-	if (playerPosition.y < centre.y && abs(playerPosition.y - centre.y) - playerDimension.y < (dimension.y / 2) && playerPosition.x + playerDimension.x >= centre.x - (dimension.x / 2) && playerPosition.x - playerDimension.x <= centre.x + (dimension.x / 2))
+	if (playerPosition.y < centre.y && abs((int)(playerPosition.y - centre.y)) - playerDimension.y < (dimension.y / 2) && playerPosition.x + playerDimension.x >= centre.x - (dimension.x / 2) && playerPosition.x - playerDimension.x <= centre.x + (dimension.x / 2))
 	{
 		//Avoid overlapping
 		//PlayerPosition.x = -Dimension.x + CurrentDistance.x;

@@ -29,11 +29,5 @@ private:
 	int nearestPlanetIndex;
 	bool isCaughtByPlanet;
 	bool isCollidingWithPlatform;
-	hgeSprite* Sprite1;
-	hgeSprite* Sprite2;
-	hgeSprite* Sprite3;
-	hgeSprite* Sprite4;
-	hgeSprite* Sprite5;
-	hgeSprite* Sprite6;
-	bool hasToLoadSprites;
+	hgeSprite* treeSprite;
 };
