@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Sources\External">
+      <UniqueIdentifier>{d28f4e90-16aa-46a3-be51-df706842f3c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Sources\Classes">
+      <UniqueIdentifier>{8d3595cf-91d7-4110-bb8c-1c606d6bf571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Classes\GameStates">
+      <UniqueIdentifier>{0e4a373b-d6e4-4518-8a5d-a5c4ec8ca873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Headers">
+      <UniqueIdentifier>{50e97ee0-0de7-4937-a5d7-25f35a6d71b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Headers\GameState Headers">
+      <UniqueIdentifier>{51ef0290-6a45-4cf5-b81c-dc7c29ed1235}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Sources\External</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Sources\External</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Sources\External</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Sources\External</Filter>
+    </ClCompile>
+    <ClCompile Include="XboxController.cpp">
+      <Filter>Sources\External</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Levels.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Menu.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_Pause.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Clouds.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="XboxController.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemies.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameShell.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityManager.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetsAndBlackHoles.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Platforms.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Players.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="StarsChests.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Trees.cpp">
+      <Filter>Sources\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_ShowImage.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState_NextLevelAndGameOver.cpp">
+      <Filter>Sources\Classes\GameStates</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector3.h">
+      <Filter>Sources\External</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Sources\External</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Sources\External</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Sources\External</Filter>
+    </ClInclude>
+    <ClInclude Include="XboxController.h">
+      <Filter>Sources\External</Filter>
+    </ClInclude>
+    <ClInclude Include="Clouds.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemies.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameShell.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityManager.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetsAndBlackHoles.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Platforms.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Players.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StarsChests.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="XboxController.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Levels.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Menu.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_Pause.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Trees.h">
+      <Filter>Sources\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_ShowImage.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState_NextLevelAndGameOver.h">
+      <Filter>Sources\Headers\GameState Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
